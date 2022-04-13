@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.CrossCuttingConserns.Validation
 {
-    public class ValidationRules
+    public class ValidationTool
     {
         public static void Validate(IValidator validator, object entity)
         {

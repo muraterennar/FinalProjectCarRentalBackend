@@ -13,10 +13,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Aspect\Autofac\Caching\" />
-    <Folder Include="Aspect\Autofac\Validation\" />
-    <Folder Include="Aspect\Autofac\Transiction\" />
-  </ItemGroup>
-
 </Project>
