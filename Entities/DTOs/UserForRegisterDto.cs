@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace Entities.DTOs
 {
-    public class RetnalDetailDto:IDto
+    public class UserForRegisterDto:IDto
     {
-        public int RentalId { get; set; }
-        public int CarId { get; set; }
-        public string BrandName { get; set; }
-        public string BrandModel{ get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime RentDate { get; set; }
-        public DateTime ReturnDate { get; set; }
+        public string Gender { get; set; }
+        public string CityName { get; set; }
+        public DateTime Birthdate { get; set; }
+        public string Address { get; set; }
+        public string Password { get; set; }
     }
 }

@@ -51,20 +51,50 @@ namespace DataAccess.Concreate.EntityFramework
                                  ImagePath = image.ImagePath,
                                  ModelYear = car.ModelYear,
                                  DailyPrice = car.DailyPrice,
-                                 Descriptions = car.Descriptions
+                                 Descriptions = car.Descriptions,
                              };
                 return result.ToList();
             }
         }
-
-        public List<CarDetailIdDto> GetCarDetailById(int carId)
+        public List<CarDetailIdDto> GetCarDetailsIdById(int carId)
         {
             return GetCarDetailByAllId().Where(c => c.CarId == carId).ToList();
         }
 
-        public List<CarDetailNameDto> GetCarDetailByName(string brandName)
+
+        public List<CarDetailIdDto> GetCarDetailsIdByBrandId(int brandId)
+        {
+            return GetCarDetailByAllId().Where(c => c.BrandId == brandId).ToList();
+        }
+
+        public List<CarDetailIdDto> GetCarDetailsIdByColorId(int colorId)
+        {
+            return GetCarDetailByAllId().Where(c => c.ColorId == colorId).ToList();
+        }
+
+        public List<CarDetailIdDto> GetCarDetailsIdByImageId(int imageId)
+        {
+            return GetCarDetailByAllId().Where(c => c.ImageId == imageId).ToList();
+        }
+
+        public List<CarDetailNameDto> GetCarDetailsNameById(int id)
+        {
+            return GetCarDetailByAllNames().Where(c => c.CarId == id).ToList();
+        }
+
+        public List<CarDetailNameDto> GetCarDetailsNameByBrandName(string brandName)
         {
             return GetCarDetailByAllNames().Where(c => c.BrandName == brandName).ToList();
+        }
+
+        public List<CarDetailNameDto> GetCarDetailsNameByColorName(string ColorName)
+        {
+            return GetCarDetailByAllNames().Where(c => c.ColorName == ColorName).ToList();
+        }
+
+        public List<CarDetailNameDto> GetCarDetailsNameByİmagePath(string imagePath)
+        {
+            return GetCarDetailByAllNames().Where(c => c.ImagePath == imagePath).ToList();
         }
     }
 }

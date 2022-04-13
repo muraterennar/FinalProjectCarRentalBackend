@@ -12,12 +12,12 @@ namespace DataAccess.Concreate.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, CarRentalContext>, IRentalDal
     {
-        public List<RetnalDetailDto> GetRentalDetailById(int rentalId)
+        public List<RentalDetailDto> GetRentalDetailById(int rentalId)
         {
             return GetRentalDetails().Where(x => x.RentalId == rentalId).ToList();
         }
 
-        public List<RetnalDetailDto> GetRentalDetails()
+        public List<RentalDetailDto> GetRentalDetails()
         {
             using (CarRentalContext context = new CarRentalContext())
             {
@@ -26,7 +26,7 @@ namespace DataAccess.Concreate.EntityFramework
                              join brand in context.Brands on rental.BrandId equals brand.Id
                              join user in context.Users on rental.UserId equals user.Id
 
-                             select new RetnalDetailDto
+                             select new RentalDetailDto
                              {
                                  RentalId = rental.Id,
                                  CarId = car.Id,

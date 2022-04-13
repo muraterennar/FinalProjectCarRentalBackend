@@ -14,7 +14,16 @@ namespace DataAccess.Abstract
         List<CarDetailNameDto> GetCarDetailByAllNames();
         List<CarDetailIdDto> GetCarDetailByAllId();
 
-        List<CarDetailNameDto> GetCarDetailByName(string brandName);
-        List<CarDetailIdDto> GetCarDetailById(int carId);
+        //List<CarDetailIdDto> GetCarDetailById(int carId);
+
+        List<CarDetailIdDto> GetCarDetailsIdById(int carId);
+        List<CarDetailIdDto> GetCarDetailsIdByBrandId(int brandId);
+        List<CarDetailIdDto> GetCarDetailsIdByColorId(int colorId);
+        List<CarDetailIdDto> GetCarDetailsIdByImageId(int imageId);
+
+        List<CarDetailNameDto> GetCarDetailsNameById(int id);
+        List<CarDetailNameDto> GetCarDetailsNameByBrandName(string brandName);
+        List<CarDetailNameDto> GetCarDetailsNameByColorName(string ColorName);
+        List<CarDetailNameDto> GetCarDetailsNameByİmagePath(string imagePath);
     }
 }
