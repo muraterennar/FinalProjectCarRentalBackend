@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Aspect.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
@@ -14,12 +15,13 @@ namespace Business.Concreate
     public class BrandManager:IBrandService
     {
         IBrandDal _brandDal;
-
+        
         public BrandManager(IBrandDal brandDal)
         {
             _brandDal = brandDal;
         }
 
+        [CacheRemoveAspect("IBrandService.Get")]
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
@@ -34,6 +36,7 @@ namespace Business.Concreate
             return new SuccessResult(Messages.BrandDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.BrandsListed);

@@ -16,7 +16,7 @@ namespace Core.Aspect.Autofac.Caching
         int _duration;
         ICacheManager _cacheManager;
 
-        public CacheAspect(int duration)
+        public CacheAspect(int duration = 60)
         {
             _duration = duration;
             _cacheManager = ServiceTool.ServiceProvider.GetService<ICacheManager>();
@@ -24,7 +24,7 @@ namespace Core.Aspect.Autofac.Caching
 
         public override void Intercept(IInvocation invocation)
         {
-            var methodName = string.Format($"{invocation.Method.ReflectedType.FullName},{invocation.Method.Name}");
+            var methodName = string.Format($"{invocation.Method.ReflectedType.FullName}.{invocation.Method.Name}");
             var arguments = invocation.Arguments.ToList();
             var key = $"{methodName}({string.Join(",", arguments.Select(x => x?.ToString() ?? "<Null>"))})";
 

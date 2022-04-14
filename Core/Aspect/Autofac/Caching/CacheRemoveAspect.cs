@@ -16,10 +16,10 @@ namespace Core.Aspect.Autofac.Caching
         string _pattern;
         ICacheManager _cacheManager;
 
-        public CacheRemoveAspect(ICacheManager cacheManager, string pattern)
+        public CacheRemoveAspect(string pattern)
         {
-            _cacheManager = ServiceTool.ServiceProvider.GetService<ICacheManager>();
             _pattern = pattern;
+            _cacheManager = ServiceTool.ServiceProvider.GetService<ICacheManager>();
         }
 
         protected override void OnSuccess(IInvocation invocation)
