@@ -62,12 +62,12 @@ namespace Business.Concreate
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(), Messages.ImagesListed);
         }
 
-        public IDataResult<List<UserImage>> GetByCarId(int userId)
+        public IDataResult<List<UserImage>> GetByUserId(int userId)
         {
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(u => u.UserId == userId), Messages.ImagesListedbyUserId);
         }
 
-        public IDataResult<List<UserImage>> GetByCarImage(string imagePath)
+        public IDataResult<List<UserImage>> GetByUserImage(string imagePath)
         {
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(u => u.ImagePath == imagePath), Messages.ImagesListedbyImagePath);
         }

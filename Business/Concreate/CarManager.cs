@@ -100,7 +100,7 @@ namespace Business.Concreate
             return new SuccessDataResult<List<CarDetailNameDto>>(_carDal.GetCarDetailsNameById(id), Messages.CarDetailListed);
         }
 
-        public IDataResult<List<CarDetailNameDto>> GetCarDetailsNameByİmagePath(string imagePath)
+        public IDataResult<List<CarDetailNameDto>> GetCarDetailsNameByImagePath(string imagePath)
         {
             return new SuccessDataResult<List<CarDetailNameDto>>(_carDal.GetCarDetailsNameByİmagePath(imagePath), Messages.CarDetailsListedByImage);
         }

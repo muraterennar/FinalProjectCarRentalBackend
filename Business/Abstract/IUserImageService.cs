@@ -11,9 +11,9 @@ namespace Business.Abstract
 {
     public interface IUserImageService
     {
-        IDataResult<List<UserImage>> GetByCarId(int userId);
-        IDataResult<List<UserImage>> GetByCarImage(string imagePath);
         IDataResult<List<UserImage>> GetAll();
+        IDataResult<List<UserImage>> GetByUserId(int userId);
+        IDataResult<List<UserImage>> GetByUserImage(string imagePath);
         IResult Add(int userId, List<IFormFile> file);
         IResult Delete(int imageId);
         IResult Update(int imageId, IFormFile file);
