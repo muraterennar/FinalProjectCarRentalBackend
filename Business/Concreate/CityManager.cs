@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Aspect.Autofac.Caching;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
@@ -20,16 +21,17 @@ namespace Business.Concreate
             _cityDal = cityDal;
         }
 
+        [CacheAspect]
         public IDataResult<List<City>> GetAll()
         {
             return new SuccessDataResult<List<City>>(_cityDal.GetAll(), Messages.CitiesListed);
         }
-
+        [CacheAspect]
         public IDataResult<City> GetById(int id)
         {
             return new SuccessDataResult<City>(_cityDal.Get(c => c.Id == id));
         }
-
+        [CacheAspect]
         public IDataResult<City> GetByName(string name)
         {
             return new SuccessDataResult<City>(_cityDal.Get(c => c.CityName == name));

@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidaiton;
+using Core.Aspect.Autofac.Caching;
+using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Results;
@@ -25,6 +29,9 @@ namespace Business.Concreate
             _fileHelper = fileHelper;
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(CarImageValidator))]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Add(int carId, List<IFormFile> file)
         {
             var result = BusinessRules.Run
@@ -48,6 +55,9 @@ namespace Business.Concreate
             return new SuccessResult(Messages.CarImageAdded);
         }
 
+        [SecuredOperation("admin")]
+        [ValidationAspect(typeof(CarImageValidator))]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Delete(int imageId)
         {
             var result = _carImageDal.Get(c => c.Id == imageId);
@@ -57,26 +67,30 @@ namespace Business.Concreate
             return new SuccessResult(Messages.CarImageDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), Messages.CarImageGetAll);
         }
-
+        [CacheAspect]
         public IDataResult<CarImage> GetByCarId(int carId)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.CarId == carId), Messages.CarImageGet);
         }
-
+        [CacheAspect]
         public IDataResult<CarImage> GetById(int imageId)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.Id == imageId), Messages.CarImageGetImageId);
         }
-
+        [CacheAspect]
         public IDataResult<CarImage> GetByImagePath(string imagePath)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.ImagePath == imagePath), Messages.CarImageGetImagePath);
         }
 
+        [SecuredOperation("admin")]
+        [ValidationAspect(typeof(CarImageValidator))]
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Update(int imageId, IFormFile file)
         {
             var result = _carImageDal.Get(c => c.Id == imageId);

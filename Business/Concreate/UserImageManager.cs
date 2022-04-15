@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidaiton;
+using Core.Aspect.Autofac.Caching;
+using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers.FileHelper;
 using Core.Utilities.Results;
@@ -25,6 +29,9 @@ namespace Business.Concreate
             _userImageDal = userImageDal;
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(UserImageValidator))]
+        [CacheRemoveAspect("IUserImageService.Get")]
         public IResult Add(int userId, List<IFormFile> file)
         {
             var result = BusinessRules.Run
@@ -48,6 +55,9 @@ namespace Business.Concreate
             return new SuccessResult(Messages.UserImageAdded);
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(UserImageValidator))]
+        [CacheRemoveAspect("IUserImageService.Get")]
         public IResult Delete(int imageId)
         {
             var result = _userImageDal.Get(c => c.Id == imageId);
@@ -56,22 +66,25 @@ namespace Business.Concreate
 
             return new SuccessResult(Messages.UserImageDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<UserImage>> GetAll()
         {
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(), Messages.ImagesListed);
         }
-
+        [CacheAspect]
         public IDataResult<List<UserImage>> GetByUserId(int userId)
         {
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(u => u.UserId == userId), Messages.ImagesListedbyUserId);
         }
-
+        [CacheAspect]
         public IDataResult<List<UserImage>> GetByUserImage(string imagePath)
         {
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(u => u.ImagePath == imagePath), Messages.ImagesListedbyImagePath);
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(UserImageValidator))]
+        [CacheRemoveAspect("IUserImageService.Get")]
         public IResult Update(int imageId, IFormFile file)
         {
             var result = _userImageDal.Get(c => c.Id == imageId);

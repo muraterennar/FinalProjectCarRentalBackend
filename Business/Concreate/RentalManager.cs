@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidaiton;
+using Core.Aspect.Autofac.Caching;
+using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
@@ -21,6 +25,9 @@ namespace Business.Concreate
             _rentalDal = rentalDal;
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(RentalValidator))]
+        [CacheRemoveAspect("IRentalService.Get")]
         public IResult Add(Rental rental)
         {
             rental.RentDate = DateTime.Now;
@@ -30,32 +37,38 @@ namespace Business.Concreate
             return new SuccessResult(Messages.RentalAdded);
         }
 
+        [SecuredOperation("admin")]
+        [ValidationAspect(typeof(RentalValidator))]
+        [CacheRemoveAspect("IRentalService.Get")]
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.RentalDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalsListed);
         }
-
+        [CacheAspect]
         public IDataResult<Rental> GetbyId(int id)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id), Messages.RentalListed);
         }
-
+        [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetRentalDetailById(int id)
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailById(id), Messages.RentalListed);
         }
-
+        [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.RentalsListed);
         }
 
+        [SecuredOperation("admin")]
+        [ValidationAspect(typeof(RentalValidator))]
+        [CacheRemoveAspect("IRentalService.Get")]
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);

@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidaiton;
 using Core.Aspect.Autofac.Caching;
+using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
@@ -12,15 +15,17 @@ using System.Threading.Tasks;
 
 namespace Business.Concreate
 {
-    public class BrandManager:IBrandService
+    public class BrandManager : IBrandService
     {
         IBrandDal _brandDal;
-        
+
         public BrandManager(IBrandDal brandDal)
         {
             _brandDal = brandDal;
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(BrandValidator))]
         [CacheRemoveAspect("IBrandService.Get")]
         public IResult Add(Brand brand)
         {
@@ -29,6 +34,9 @@ namespace Business.Concreate
             return new SuccessResult(Messages.BrandAdded);
         }
 
+        [SecuredOperation("admin")]
+        [ValidationAspect(typeof(BrandValidator))]
+        [CacheRemoveAspect("IBrandService")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
@@ -39,14 +47,18 @@ namespace Business.Concreate
         [CacheAspect]
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.BrandsListed);
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandsListed);
         }
 
+        [CacheAspect]
         public IDataResult<Brand> GetById(int id)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(b=>b.Id == id), Messages.BrandsListed);
+            return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == id), Messages.BrandsListed);
         }
 
+        [SecuredOperation("admin")]
+        [ValidationAspect(typeof(BrandValidator))]
+        [CacheRemoveAspect("IBrandService.Get")]
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);

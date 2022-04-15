@@ -1,5 +1,9 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidaiton;
+using Core.Aspect.Autofac.Caching;
+using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
@@ -12,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concreate
 {
-    public class CustomerManager:ICustomerService
+    public class CustomerManager : ICustomerService
     {
         ICustomerDal _customerDal;
 
@@ -21,6 +25,9 @@ namespace Business.Concreate
             _customerDal = customerDal;
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(CustomerValidator))]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Add(Customer customer)
         {
             _customerDal.Add(customer);
@@ -28,33 +35,39 @@ namespace Business.Concreate
             return new SuccessResult(Messages.CustomerAdded);
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(CustomerValidator))]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Delete(Customer customer)
         {
             _customerDal.Delete(customer);
 
             return new SuccessResult(Messages.CustomerDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Customer>> GetAll()
         {
-            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Messages.CustomersListed);
+            return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomersListed);
         }
-
+        [CacheAspect]
         public IDataResult<Customer> GetbyId(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id),Messages.CustomerListed);
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id), Messages.CustomerListed);
         }
-
+        [CacheAspect]
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetailById(int id)
         {
-            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetailById(id),Messages.CustomerListed);
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetailById(id), Messages.CustomerListed);
         }
-
+        [CacheAspect]
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
         {
-            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails(),Messages.CustomersListed);
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails(), Messages.CustomersListed);
         }
 
+        [SecuredOperation("admin, user")]
+        [ValidationAspect(typeof(CustomerValidator))]
+        [CacheRemoveAspect("ICustomerService.Get")]
         public IResult Update(Customer customer)
         {
             _customerDal.Update(customer);
