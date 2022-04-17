@@ -45,7 +45,7 @@ namespace WebAPI
             }
 
             //Angularý Service Olarak Paylaþtýðýnda Gelen localhost adersini yaz
-            //app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 
