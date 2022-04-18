@@ -20,6 +20,7 @@ namespace WebAPI.Controllers
         public IActionResult Login(UserForLoginDto userForLoginDto)
         {
             var userToLogin = _authService.Login(userForLoginDto);
+
             if (!userToLogin.Success)
             {
                 return BadRequest(userToLogin.Message);
