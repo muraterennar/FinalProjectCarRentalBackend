@@ -55,6 +55,12 @@ namespace Business.DependencyResolvers.Autofac
 
             builder.RegisterType<FileHelperManager>().As<IFileHelper>().SingleInstance();
 
+            //BrandImage
+            builder.RegisterType<BrandImageManager>().As<IBrandImageService>().SingleInstance();
+            builder.RegisterType<EfBrandImageDal>().As<IBrandImageDal>().SingleInstance();
+
+            builder.RegisterType<FileHelperManager>().As<IFileHelper>().SingleInstance();
+
             //User
             builder.RegisterType<UserManager>().As<IUserService>().SingleInstance();
             builder.RegisterType<EfUserDal>().As<IUserDal>().SingleInstance();

@@ -105,5 +105,7 @@ namespace Business.Constants
         public static string UserListed = "Kullanıcı Listelendi".ToUpper();
         public static string CustomerListed = "Müşteriler listelendi".ToUpper();
         public static string RentalListed = "kiralama listelendi".ToUpper();
+        public static string BrandImageAdded = "marka resmi eklendi".ToUpper();
+        public static string ImagesListedByBrandId = "resimler markaya göre listelendi".ToUpper();
     }
 }
