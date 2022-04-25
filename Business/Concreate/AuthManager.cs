@@ -59,11 +59,6 @@ namespace Business.Concreate
                 Email = userForRegisterDto.Email,
                 FirstName = userForRegisterDto.FirstName,
                 LastName = userForRegisterDto.LastName,
-                Address = userForRegisterDto.Address,
-                Birthdate = userForRegisterDto.Birthdate,
-                Gender = userForRegisterDto.Gender,
-                CityName = userForRegisterDto.CityName,
-                PhoneNumber = userForRegisterDto.PhoneNumber,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Status = true

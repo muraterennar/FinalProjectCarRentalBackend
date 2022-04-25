@@ -24,7 +24,6 @@ namespace Business.Concreate
             _userDal = userDal;
         }
 
-        [SecuredOperation("admin, user")]
         [ValidationAspect(typeof(UserValidator))]
         [CacheRemoveAspect("IUserService.Get")]
         public IResult Add(User user)
@@ -51,11 +50,6 @@ namespace Business.Concreate
         public IDataResult<List<OperationClaim>> GetClaims(User user)
         {
             return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user)); ;
-        }
-        [CacheAspect]
-        public IDataResult<List<User>> GetUser(User user)
-        {
-            return new SuccessDataResult<List<User>>(_userDal.GetUser(user), Messages.UserListed);
         }
     }
 }
