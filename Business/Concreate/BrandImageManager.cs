@@ -68,12 +68,6 @@ namespace Business.Concreate
         }
 
         [CacheAspect]
-        public IDataResult<List<BrandImage>> Get(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        [CacheAspect]
         public IDataResult<List<BrandImage>> GetAll()
         {
             return new SuccessDataResult<List<BrandImage>>(_brandImageDal.GetAll(), Messages.ImagesListed);
@@ -83,6 +77,11 @@ namespace Business.Concreate
         public IDataResult<List<BrandImage>> GetBrandId(int brandId)
         {
             return new SuccessDataResult<List<BrandImage>>(_brandImageDal.GetAll(b => b.BrandId == brandId), Messages.ImagesListedByBrandId);
+        }
+
+        public IDataResult<List<BrandImage>> GetImageId(int imageId)
+        {
+            return new SuccessDataResult<List<BrandImage>>(_brandImageDal.GetAll(b => b.Id == imageId), Messages.ImagesListed);
         }
 
         [CacheAspect]

@@ -12,8 +12,8 @@ namespace Business.Abstract
     public interface IBrandImageService
     {
         IDataResult<List<BrandImage>> GetAll();
-        IDataResult<List<BrandImage>> Get(int id);
         IDataResult<List<BrandImage>> GetBrandId(int brandId);
+        IDataResult<List<BrandImage>> GetImageId(int imageId);
         IDataResult<List<BrandImage>> GetImagePath(string imagePath);
 
         IResult Add(int brandId, List<IFormFile> file);
