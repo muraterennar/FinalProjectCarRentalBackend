@@ -28,7 +28,15 @@ namespace Business.Concreate
         [CacheRemoveAspect("IUserService.Get")]
         public IResult Add(User user)
         {
+            if (!user.CityId.Equals(null) || !user.GenderId.Equals(null) || !user.Birthdate.Equals(null))
+            {
+                user.Birthdate = DateTime.Now;
+                user.CityId = 1;
+                user.GenderId = 1;
+            }
+
             _userDal.Add(user);
+
             return new SuccessResult(Messages.UserAdded);
         }
         [CacheAspect]

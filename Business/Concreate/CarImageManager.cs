@@ -29,7 +29,7 @@ namespace Business.Concreate
             _fileHelper = fileHelper;
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(CarImageValidator))]
         [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Add(int carId, List<IFormFile> file)
@@ -55,7 +55,7 @@ namespace Business.Concreate
             return new SuccessResult(Messages.CarImageAdded);
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Delete(int imageId)
@@ -88,7 +88,7 @@ namespace Business.Concreate
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.ImagePath == imagePath), Messages.CarImageGetImagePath);
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Update(int imageId, IFormFile file)

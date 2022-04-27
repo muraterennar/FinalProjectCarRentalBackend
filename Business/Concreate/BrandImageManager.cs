@@ -29,7 +29,7 @@ namespace Business.Concreate
             _brandImageDal = brandImageDal;
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(BrandImageValidator))]
         [CacheRemoveAspect("IBrandImageService.Get")]
         public IResult Add(int brandId, List<IFormFile> file)
@@ -39,7 +39,7 @@ namespace Business.Concreate
                     CheckIfBrandImagesLimit(file)
                 );
 
-            if (result != null)
+            if (result == null)
             {
                 return result;
             }
@@ -55,7 +55,7 @@ namespace Business.Concreate
             return new SuccessResult(Messages.BrandImageAdded);
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(BrandImageValidator))]
         [CacheRemoveAspect("IBrandImageService.Get")]
         public IResult Delete(int imageId)
@@ -90,7 +90,7 @@ namespace Business.Concreate
             return new SuccessDataResult<List<BrandImage>>(_brandImageDal.GetAll(b => b.ImagePath == imagePath), Messages.ImagesListedbyImagePath);
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(BrandImageValidator))]
         [CacheRemoveAspect("IBrandImageService.Get")]
         public IResult Update(int imageId, IFormFile file)
@@ -109,7 +109,7 @@ namespace Business.Concreate
 
         private IResult CheckIfBrandImagesLimit(List<IFormFile> files)
         {
-            if (files.Count == 1)
+            if (files.Count >= 1)
             {
                 return new ErrorResult(Messages.UserImagesLimitError);
             }

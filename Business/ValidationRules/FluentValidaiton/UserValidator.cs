@@ -14,16 +14,15 @@ namespace Business.ValidationRules.FluentValidaiton
         {
             RuleFor(u => u.FirstName).NotEmpty();
             RuleFor(u => u.LastName).NotEmpty();
-            RuleFor(u => u.Address).NotEmpty();
             RuleFor(u => u.Email).NotEmpty();
-            RuleFor(u => u.Birthdate).NotEmpty();
-            RuleFor(u => u.CityId).NotEmpty();
-            RuleFor(u => u.GenderId).NotEmpty();
+            RuleFor(u => u.PhoneNumber).NotEmpty();
 
             RuleFor(u => u.FirstName).MinimumLength(5);
             RuleFor(u => u.LastName).MinimumLength(3);
             RuleFor(u => u.Address).MinimumLength(10);
             RuleFor(u => u.Email).MinimumLength(8);
+            RuleFor(u => u.PhoneNumber).MinimumLength(10).MaximumLength(10).WithMessage("'0' girmeden deneyin");
+            RuleFor(u => u.Birthdate).Must(Today).WithMessage("En Fazla Bu Günün Tarihi Seçilmeli");
 
             RuleFor(u => u.Email).Must(Contains).WithMessage("@ Karakteri bulunmalıdır");
         }
@@ -31,6 +30,17 @@ namespace Business.ValidationRules.FluentValidaiton
         bool Contains(string args)
         {
             return args.Contains("@");
+        }
+
+        bool OldDate(DateTime date)
+        {
+            var dates = DateTime.Now.Year - 100;
+            return date.Year > dates;
+        }
+
+        bool Today(DateTime date)
+        {
+            return date.Year <= DateTime.Today.Year;
         }
     }
 }

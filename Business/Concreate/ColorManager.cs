@@ -24,7 +24,7 @@ namespace Business.Concreate
             _colorDal = colorDal;
         }
 
-        [SecuredOperation("admin, user")]
+        [SecuredOperation("admin")]
         [ValidationAspect(typeof(ColorValidator))]
         [CacheRemoveAspect("IColorSerivce.Get")]
         public IResult Add(Color color)
