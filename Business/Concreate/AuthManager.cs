@@ -17,14 +17,12 @@ namespace Business.Concreate
     public class AuthManager : IAuthService
     {
         IUserService _userService;
-        ICityDal _cityDal;
         ITokenHelper _tokenHelper;
 
-        public AuthManager(ITokenHelper tokenHelper, IUserService userService, ICityDal cityDal)
+        public AuthManager(ITokenHelper tokenHelper, IUserService userService)
         {
             _tokenHelper = tokenHelper;
             _userService = userService;
-            _cityDal = cityDal;
         }
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
@@ -59,6 +57,7 @@ namespace Business.Concreate
                 Email = userForRegisterDto.Email,
                 FirstName = userForRegisterDto.FirstName,
                 LastName = userForRegisterDto.LastName,
+                PhoneNumber = userForRegisterDto.PhoneNumber,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Status = true

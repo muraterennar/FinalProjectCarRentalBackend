@@ -30,7 +30,6 @@ namespace DataAccess.Concreate.EntityFramework
                                  FirstName = user.FirstName,
                                  LastName = user.LastName,
                                  Email = user.Email,
-                                 PhoneNumber = user.PhoneNumber,
                                  CompanyName = customer.CompanyName,
                              };
                 return result.ToList();

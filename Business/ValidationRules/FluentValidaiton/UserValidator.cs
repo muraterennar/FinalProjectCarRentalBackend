@@ -18,14 +18,12 @@ namespace Business.ValidationRules.FluentValidaiton
             RuleFor(u => u.Email).NotEmpty();
             RuleFor(u => u.Birthdate).NotEmpty();
             RuleFor(u => u.CityId).NotEmpty();
-            RuleFor(u => u.Gender).NotEmpty();
+            RuleFor(u => u.GenderId).NotEmpty();
 
             RuleFor(u => u.FirstName).MinimumLength(5);
             RuleFor(u => u.LastName).MinimumLength(3);
             RuleFor(u => u.Address).MinimumLength(10);
             RuleFor(u => u.Email).MinimumLength(8);
-            RuleFor(u => u.Gender).MaximumLength(3);
-            RuleFor(u => u.Gender).MinimumLength(3);
 
             RuleFor(u => u.Email).Must(Contains).WithMessage("@ Karakteri bulunmalıdır");
         }

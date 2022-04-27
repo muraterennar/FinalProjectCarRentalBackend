@@ -24,5 +24,33 @@ namespace DataAccess.Concreate.EntityFramework
                 return result.ToList();
             }
         }
+
+        public List<User> GetUserDetails(User user)
+        {
+            using (CarRentalContext context = new CarRentalContext())
+            {
+                var result = from us in context.Users
+                             join gender in context.Genders on us.GenderId equals gender.Id
+                             join city in context.Cities on us.CityId equals city.Id
+                             where us.Id == user.Id
+                             select new User
+                             {
+                                 Id = us.Id,
+                                 CityId = city.Id,
+                                 GenderId = gender.Id,
+                                 FirstName = us.FirstName,
+                                 LastName = us.LastName,
+                                 Email = us.Email,
+                                 Address = us.Address,
+                                 Birthdate = us.Birthdate,
+                                 PasswordHash = us.PasswordHash,
+                                 PasswordSalt = us.PasswordSalt,
+                                 PhoneNumber = us.PhoneNumber,
+                                 Status = us.Status
+                             };
+                return result.ToList();
+
+            }
+        }
     }
 }
