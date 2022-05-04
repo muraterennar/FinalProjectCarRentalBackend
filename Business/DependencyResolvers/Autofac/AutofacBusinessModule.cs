@@ -43,6 +43,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CityManager>().As<ICityService>().SingleInstance();
             builder.RegisterType<EfCityDal>().As<ICityDal>().SingleInstance();
 
+            //CreditCard
+            builder.RegisterType<CreditCardPaymentManager>().As<ICreditCardPaymetService>().SingleInstance();
+            builder.RegisterType<EfCreditCardPaymnetDal>().As<ICreditCardPaymentDal>().SingleInstance();
+
             //CarImage
             builder.RegisterType<CarImageManager>().As<ICarImageService>().SingleInstance();
             builder.RegisterType<EfCarImageDal>().As<ICarImageDal>().SingleInstance();

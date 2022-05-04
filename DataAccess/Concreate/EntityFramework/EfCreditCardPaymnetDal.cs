@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concreate.EntityFramework
 {
-    public class EfCreditCardPaymnet : EfEntityRepositoryBase<CreditCard, CarRentalContext>, ICreditCardPaymentDal
+    public class EfCreditCardPaymnetDal : EfEntityRepositoryBase<CreditCard, CarRentalContext>, ICreditCardPaymentDal
     {
      
     }
