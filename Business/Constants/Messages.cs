@@ -107,5 +107,9 @@ namespace Business.Constants
         public static string RentalListed = "kiralama listelendi".ToUpper();
         public static string BrandImageAdded = "marka resmi eklendi".ToUpper();
         public static string ImagesListedByBrandId = "resimler markaya göre listelendi".ToUpper();
+        public static string ListedAllCreditCard = "tüm kredi kartları listelendi".ToUpper();
+        public static string AddedCreditCardAndToPay = "kredi kartı eklendi ödeme yapıldı".ToUpper();
+        public static string CreditCardListed = "kredi kartı listelendi".ToUpper();
+        public static string ListedCreditCardbyUserId = "Kredi kartı kullanıcıya göre listelendi".ToUpper();
     }
 }
