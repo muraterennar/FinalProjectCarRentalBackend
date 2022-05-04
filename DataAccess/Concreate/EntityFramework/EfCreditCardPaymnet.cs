@@ -12,6 +12,6 @@ namespace DataAccess.Concreate.EntityFramework
 {
     public class EfCreditCardPaymnet : EfEntityRepositoryBase<CreditCard, CarRentalContext>, ICreditCardPaymentDal
     {
-       
+     
     }
 }

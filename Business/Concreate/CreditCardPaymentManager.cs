@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Entities.Concreate;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,7 @@ namespace Business.Concreate
             return new SuccessDataResult<CreditCard>(_creditCardPayment.Get(c => c.UserId == userId), Messages.ListedCreditCardbyUserId);
         }
 
-        public IResult NotAddPaymnet()
+        public IResult NotAddPaymnet(CreditCardPaymentDto creditCardPaymentDto)
         {
             return new SuccessResult(Messages.AddedCreditCardAndToPay);
         }

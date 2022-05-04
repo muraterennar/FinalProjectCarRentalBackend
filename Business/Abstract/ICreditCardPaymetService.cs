@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Concreate;
 using Core.Utilities.Results;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Business.Abstract
         IDataResult<CreditCard> GetByUserId(int userId);
 
         IResult AddPaymnet(CreditCard creditCard);
-        IResult NotAddPaymnet();
+        IResult NotAddPaymnet(CreditCardPaymentDto creditCardPaymentDto);
         IResult Update(CreditCard creditCard);
         IResult Delete(CreditCard creditCard);
 

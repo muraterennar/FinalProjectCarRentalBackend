@@ -11,6 +11,6 @@ namespace DataAccess.Abstract
 {
     public interface ICreditCardPaymentDal:IEntityRepository<CreditCard>
     {
-        
+       
     }
 }
