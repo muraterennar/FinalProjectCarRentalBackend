@@ -10,7 +10,7 @@ namespace Core.Entities.Concreate
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public string NameOfTheCard { get; set; }
+        public string NameOfTheCardHolder { get; set; }
         public string CardNumber { get; set; }
         public string Cvv { get; set; }
         public int ExpirationMonth { get; set; }

@@ -9,7 +9,7 @@ namespace Entities.DTOs
 {
     public class CreditCardPaymentDto:IDto
     {
-        public string NameOfTheCard { get; set; }
+        public string NameOfTheCardHolder { get; set; }
         public string CardNumber { get; set; }
         public string Cvv { get; set; }
         public int ExpirationMonth { get; set; }
