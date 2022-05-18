@@ -16,17 +16,14 @@ namespace Business.Abstract
         IDataResult<List<Car>> GetByBrandId(int brandId);
         IDataResult<List<Car>> GetByColorId(int colorId);
 
-        IDataResult<List<CarDetailIdDto>> GetCarDetailsIdAll();
-        IDataResult<List<CarDetailIdDto>> GetCarDetailsIdById(int carId);
-        IDataResult<List<CarDetailIdDto>> GetCarDetailsIdByBrandId(int brandId);
-        IDataResult<List<CarDetailIdDto>> GetCarDetailsIdByColorId(int colorId);
-        IDataResult<List<CarDetailIdDto>> GetCarDetailsIdByImageId(int imageId);
-
-        IDataResult<List<CarDetailNameDto>> GetCarDetailsNameAll();
-        IDataResult<List<CarDetailNameDto>> GetCarDetailsNameById(int id);
-        IDataResult<List<CarDetailNameDto>> GetCarDetailsNameByBrandName(string brandName);
-        IDataResult<List<CarDetailNameDto>> GetCarDetailsNameByColorName(string colorName);
-        IDataResult<List<CarDetailNameDto>> GetCarDetailsNameByImagePath(string imagePath);
+        IDataResult<List<CarDetailDto>> GetCarDetail();
+        IDataResult<List<CarDetailDto>> GetCarDetailByCarId(int carId);
+        IDataResult<List<CarDetailDto>> GetCarDetailByBrandId(int brandId);
+        IDataResult<List<CarDetailDto>> GetCarDetailByColorId(int colorId);
+        IDataResult<List<CarDetailDto>> GetCarDetailByImageId(int imageId);
+        IDataResult<List<CarDetailDto>> GetCarDetailNameByBrandName(string brandName);
+        IDataResult<List<CarDetailDto>> GetCarDetailNameByColorName(string colorName);
+        IDataResult<List<CarDetailDto>> GetCarDetailNameByİmagePath(string imagePath);
 
         IResult Add(Car car);
         IResult Update(Car car);

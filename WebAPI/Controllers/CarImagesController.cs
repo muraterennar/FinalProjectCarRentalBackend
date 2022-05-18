@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyimagepayh")]
+        [HttpGet("getbyimagepath")]
         public IActionResult GetByImagePath(string imagePath)
         {
             var result = _carImageService.GetByImagePath(imagePath);

@@ -12,89 +12,75 @@ namespace DataAccess.Concreate.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, CarRentalContext>, ICarDal
     {
-        public List<CarDetailIdDto> GetCarDetailByAllId()
+
+
+        public List<CarDetailDto> GetCarDetail()
         {
             using (CarRentalContext context = new CarRentalContext())
             {
                 var result = from car in context.Cars
                              join brand in context.Brands on car.BrandId equals brand.Id
                              join color in context.Colors on car.ColorId equals color.Id
-                             join image in context.CarImages on car.Id equals image.CarId
-                             select new CarDetailIdDto
+                             join carImage in context.CarImages on car.Id equals carImage.CarId
+                             select new CarDetailDto
                              {
                                  CarId = car.Id,
                                  BrandId = brand.Id,
                                  ColorId = color.Id,
-                                 ImageId = image.Id,
+                                 ImageId = carImage.Id,
+                                 BrandName = brand.BrandName,
+                                 BrandModel = brand.BrandModel,
+                                 ColorName = color.ColorName,
+                                 ImagePath = carImage.ImagePath,
                                  ModelYear = car.ModelYear,
                                  DailyPrice = car.DailyPrice,
                                  Descriptions = car.Descriptions
                              };
+
                 return result.ToList();
             }
         }
 
-        public List<CarDetailNameDto> GetCarDetailByAllNames()
+        public List<CarDetailDto> GetCarDetailByBrandId(int brandId)
         {
-            using (CarRentalContext context = new CarRentalContext())
-            {
-                var result = from car in context.Cars
-                             join brand in context.Brands on car.BrandId equals brand.Id
-                             join color in context.Colors on car.ColorId equals color.Id
-                             join image in context.CarImages on car.Id equals image.CarId
-                             select new CarDetailNameDto
-                             {
-                                 CarId = car.Id,
-                                 BrandName = brand.BrandName,
-                                 BrandModel = brand.BrandModel,
-                                 ColorName = color.ColorName,
-                                 ImagePath = image.ImagePath,
-                                 ModelYear = car.ModelYear,
-                                 DailyPrice = car.DailyPrice,
-                                 Descriptions = car.Descriptions,
-                             };
-                return result.ToList();
-            }
-        }
-        public List<CarDetailIdDto> GetCarDetailsIdById(int carId)
-        {
-            return GetCarDetailByAllId().Where(c => c.CarId == carId).ToList();
+            var reult = GetCarDetail().Where(c => c.BrandId == brandId).ToList();
+            return reult;
         }
 
-
-        public List<CarDetailIdDto> GetCarDetailsIdByBrandId(int brandId)
+        public List<CarDetailDto> GetCarDetailByCarId(int carId)
         {
-            return GetCarDetailByAllId().Where(c => c.BrandId == brandId).ToList();
+            var reult = GetCarDetail().Where(c => c.CarId == carId).ToList();
+            return reult;
         }
 
-        public List<CarDetailIdDto> GetCarDetailsIdByColorId(int colorId)
+        public List<CarDetailDto> GetCarDetailByColorId(int colorId)
         {
-            return GetCarDetailByAllId().Where(c => c.ColorId == colorId).ToList();
+            var reult = GetCarDetail().Where(c => c.ColorId == colorId).ToList();
+            return reult;
         }
 
-        public List<CarDetailIdDto> GetCarDetailsIdByImageId(int imageId)
+        public List<CarDetailDto> GetCarDetailByImageId(int imageId)
         {
-            return GetCarDetailByAllId().Where(c => c.ImageId == imageId).ToList();
+            var reult = GetCarDetail().Where(c => c.ImageId == imageId).ToList();
+            return reult;
         }
 
-        public List<CarDetailNameDto> GetCarDetailsNameById(int id)
+        public List<CarDetailDto> GetCarDetailNameByBrandName(string brandName)
         {
-            return GetCarDetailByAllNames().Where(c => c.CarId == id).ToList();
+            var reult = GetCarDetail().Where(c => c.BrandName == brandName).ToList();
+            return reult;
         }
 
-        public List<CarDetailNameDto> GetCarDetailsNameByBrandName(string brandName)
+        public List<CarDetailDto> GetCarDetailNameByColorName(string colorName)
         {
-            return GetCarDetailByAllNames().Where(c => c.BrandName == brandName).ToList();
+            var reult = GetCarDetail().Where(c => c.ColorName == colorName).ToList();
+            return reult;
         }
 
-        public List<CarDetailNameDto> GetCarDetailsNameByColorName(string ColorName)
+        public List<CarDetailDto> GetCarDetailNameByİmagePath(string imagePath)
         {
-            return GetCarDetailByAllNames().Where(c => c.ColorName == ColorName).ToList();
-        }
-
-        public List<CarDetailNameDto> GetCarDetailsNameByİmagePath(string imagePath)
-        {
-            return GetCarDetailByAllNames().Where(c => c.ImagePath == imagePath).ToList();
+            var reult = GetCarDetail().Where(c => c.ImagePath == imagePath).ToList();
+            return reult;
         }
     }
 }

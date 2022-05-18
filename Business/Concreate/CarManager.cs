@@ -65,55 +65,46 @@ namespace Business.Concreate
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id), Messages.CarListed);
         }
-        [CacheAspect]
-        public IDataResult<List<CarDetailIdDto>> GetCarDetailsIdAll()
+
+        public IDataResult<List<CarDetailDto>> GetCarDetail()
         {
-            return new SuccessDataResult<List<CarDetailIdDto>>(_carDal.GetCarDetailByAllId(), Messages.CarsDetailsListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetail(), Messages.CarListed);
         }
-        [CacheAspect]
-        public IDataResult<List<CarDetailIdDto>> GetCarDetailsIdByBrandId(int brandId)
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<CarDetailIdDto>>(_carDal.GetCarDetailsIdByBrandId(brandId), Messages.CarsListedByBrandId);
+
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailByBrandId(brandId), Messages.CarListed);
         }
-        [CacheAspect]
-        public IDataResult<List<CarDetailIdDto>> GetCarDetailsIdByColorId(int colorId)
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailByCarId(int carId)
         {
-            return new SuccessDataResult<List<CarDetailIdDto>>(_carDal.GetCarDetailsIdByColorId(colorId), Messages.CarsListedByColorId);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailByCarId(carId), Messages.CarListed);
         }
-        [CacheAspect]
-        public IDataResult<List<CarDetailIdDto>> GetCarDetailsIdById(int carId)
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailByColorId(int colorId)
         {
-            return new SuccessDataResult<List<CarDetailIdDto>>(_carDal.GetCarDetailsIdById(carId), Messages.CarDetailListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailByColorId(colorId), Messages.CarListed);
         }
-        [CacheAspect]
-        public IDataResult<List<CarDetailIdDto>> GetCarDetailsIdByImageId(int imageId)
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailByImageId(int imageId)
         {
-            return new SuccessDataResult<List<CarDetailIdDto>>(_carDal.GetCarDetailsIdByImageId(imageId), Messages.CarDetailsListedByImage);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailByImageId(imageId), Messages.CarListed);
         }
-        [CacheAspect]
-        public IDataResult<List<CarDetailNameDto>> GetCarDetailsNameAll()
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailNameByBrandName(string brandName)
         {
-            return new SuccessDataResult<List<CarDetailNameDto>>(_carDal.GetCarDetailByAllNames(), Messages.CarsDetailsListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailNameByBrandName(brandName), Messages.CarListed);
         }
-        [CacheAspect]
-        public IDataResult<List<CarDetailNameDto>> GetCarDetailsNameByBrandName(string brandName)
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailNameByColorName(string colorName)
         {
-            return new SuccessDataResult<List<CarDetailNameDto>>(_carDal.GetCarDetailsNameByBrandName(brandName), Messages.CarsDetailsListedByBrandId);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailNameByColorName(colorName), Messages.CarListed);
         }
-        [CacheAspect]
-        public IDataResult<List<CarDetailNameDto>> GetCarDetailsNameByColorName(string colorName)
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailNameByİmagePath(string imagePath)
         {
-            return new SuccessDataResult<List<CarDetailNameDto>>(_carDal.GetCarDetailsNameByColorName(colorName), Messages.CarsDetailsListedByColorId);
-        }
-        [CacheAspect]
-        public IDataResult<List<CarDetailNameDto>> GetCarDetailsNameById(int id)
-        {
-            return new SuccessDataResult<List<CarDetailNameDto>>(_carDal.GetCarDetailsNameById(id), Messages.CarDetailListed);
-        }
-        [CacheAspect]
-        public IDataResult<List<CarDetailNameDto>> GetCarDetailsNameByImagePath(string imagePath)
-        {
-            return new SuccessDataResult<List<CarDetailNameDto>>(_carDal.GetCarDetailsNameByİmagePath(imagePath), Messages.CarDetailsListedByImage);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailNameByİmagePath(imagePath), Messages.CarListed);
         }
 
         [SecuredOperation("admin")]
