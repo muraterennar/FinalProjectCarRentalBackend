@@ -31,5 +31,17 @@ namespace DataAccess.Concreate.EntityFramework
                 return result.ToList();
             }
         }
+
+        public List<BrandDetailDto> GetBrandDetailsIdByBrandId(int brandId)
+        {
+            var result = GetBrandDetails().Where(b => b.BrandId == brandId);
+            return result.ToList();
+        }
+
+        public List<BrandDetailDto> GetBrandDetailsIdByImageId(int imageId)
+        {
+            var result = GetBrandDetails().Where(b => b.ImageId == imageId);
+            return result.ToList();
+        }
     }
 }

@@ -12,5 +12,7 @@ namespace DataAccess.Abstract
     public interface IBrandDal : IEntityRepository<Brand>
     {
         List<BrandDetailDto> GetBrandDetails();
+        List<BrandDetailDto> GetBrandDetailsIdByBrandId(int brandId);
+        List<BrandDetailDto> GetBrandDetailsIdByImageId(int imageId);
     }
 }

@@ -7,6 +7,7 @@ using Core.Aspect.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concreate;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,24 @@ namespace Business.Concreate
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(), Messages.BrandsListed);
+        }
+
+        [CacheAspect]
+        public IDataResult<List<BrandDetailDto>> GetBrandDetailsAll()
+        {
+            return new SuccessDataResult<List<BrandDetailDto>>(_brandDal.GetBrandDetails(), Messages.BrandsListed);
+        }
+
+        [CacheAspect]
+        public IDataResult<List<BrandDetailDto>> GetBrandDetailsIdByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<BrandDetailDto>>(_brandDal.GetBrandDetailsIdByBrandId(brandId), Messages.BrandsListed);
+        }
+
+        [CacheAspect]
+        public IDataResult<List<BrandDetailDto>> GetBrandDetailsIdByImageId(int imageId)
+        {
+            return new SuccessDataResult<List<BrandDetailDto>>(_brandDal.GetBrandDetailsIdByImageId(imageId), Messages.BrandsListed);
         }
 
         [CacheAspect]

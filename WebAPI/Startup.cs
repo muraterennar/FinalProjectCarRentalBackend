@@ -10,12 +10,14 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -81,6 +83,15 @@ namespace WebAPI
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
+
+            app.UseFileServer(
+                new FileServerOptions
+                {
+                    FileProvider = new PhysicalFileProvider(
+                        Path.Combine(env.ContentRootPath, "wwwroot")),
+                    RequestPath = "/wwwroot",
+                    EnableDirectoryBrowsing = true,
+                });
 
             app.UseRouting();
 

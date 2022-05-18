@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concreate;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,11 @@ namespace Business.Abstract
     {
         IDataResult<List<Brand>> GetAll();
         IDataResult<Brand> GetById(int id);
+
+        IDataResult<List<BrandDetailDto>> GetBrandDetailsAll();
+        IDataResult<List<BrandDetailDto>> GetBrandDetailsIdByImageId(int imageId);
+        IDataResult<List<BrandDetailDto>> GetBrandDetailsIdByBrandId(int brandId);
+
         IResult Add(Brand brand);
         IResult Update(Brand brand);
         IResult Delete(Brand brand);
