@@ -111,5 +111,10 @@ namespace Business.Constants
         public static string AddedCreditCardAndToPay = "kredi kartı eklendi ödeme yapıldı".ToUpper();
         public static string CreditCardListed = "kredi kartı listelendi".ToUpper();
         public static string ListedCreditCardbyUserId = "Kredi kartı kullanıcıya göre listelendi".ToUpper();
+        public static string CategoryAdded = "Kategori eklendi".ToUpper();
+        public static string CategoryDeleted = "Kategori Silindi".ToUpper();
+        public static string CategoryUpdated = "kategori güncellendi".ToUpper();
+        public static string CategoriesListed = "kategoriler listelendi".ToUpper();
+        public static string CategoryListed = "kategori listelendi".ToUpper();
     }
 }
