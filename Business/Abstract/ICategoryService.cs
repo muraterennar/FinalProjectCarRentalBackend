@@ -11,11 +11,11 @@ namespace Business.Abstract
     public interface ICategoryService
     {
         IDataResult<List<Category>> GetAll();
-        IDataResult<Category> GetById(int id);
-        IDataResult<List<Category>> GetByName(string categoryName);
+        IDataResult<Category> Get(int id);
+        IDataResult<Category> Get(string categoryName);
 
         IResult Add(Category category);
-        IResult Update(Category category);
         IResult Delete(Category category);
+        IResult Update(Category category);
     }
 }
