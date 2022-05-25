@@ -81,7 +81,7 @@ namespace Business.Constants
         public static string UserNotFound = "Kullanıcı Bulunamadı".ToUpper();
         public static string PasswordError = "Parola Hatası".ToUpper();
         public static string SuccessfulLogin = "Başarılı Giriş".ToUpper();
-        public static string AccessTokenCreated = "Token Oluşturuldu".ToUpper();
+        public static string AccessTokenCreated = "Giriş Yapıldı".ToUpper();
         public static string UserAlreadyExists = "Kullanıcı Mevcut".ToUpper();
         public static string AuthorizationDenied = "Yetkiniz Yok".ToUpper();
         public static string CitiesListed = "Şehirler Listelendi".ToUpper();
