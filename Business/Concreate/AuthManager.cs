@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidaiton;
+using Core.Aspect.Autofac.Caching;
+using Core.Aspect.Autofac.Validation;
 using Core.Entities.Concreate;
 using Core.Utilities.Results;
 using Core.Utilities.Security.Hashing;
@@ -25,6 +28,7 @@ namespace Business.Concreate
             _userService = userService;
         }
 
+        [CacheAspect]
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var claims = _userService.GetClaims(user);
@@ -32,6 +36,8 @@ namespace Business.Concreate
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
+        [ValidationAspect(typeof(LoginValidator))]
+        [CacheAspect]
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
@@ -48,6 +54,8 @@ namespace Business.Concreate
             return new SuccessDataResult<User>(userToCheck.Data, Messages.SuccessfulLogin);
         }
 
+        [ValidationAspect(typeof(RegisterValidator))]
+        [CacheAspect]
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
@@ -66,6 +74,7 @@ namespace Business.Concreate
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 
+        [CacheRemoveAspect("IAuthService.Get")]
         public IResult UserExists(string email)
         {
             if (_userService.GetByMail(email).Data != null)

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Business.ValidationRules.FluentValidaiton
 {
-    public class AuthValidator:AbstractValidator<UserForLoginDto>
+    public class LoginValidator:AbstractValidator<UserForLoginDto>
     {
-        public AuthValidator()
+        public LoginValidator()
         {
             RuleFor(a=>a.Email).NotEmpty();
             RuleFor(a=>a.Email).Must(Contains).WithMessage("'@' işarti bulunmalıdır.");
