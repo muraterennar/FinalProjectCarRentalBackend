@@ -28,7 +28,7 @@ namespace Business.Concreate
             _userService = userService;
         }
 
-        [CacheAspect]
+
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
             var claims = _userService.GetClaims(user);
@@ -36,8 +36,8 @@ namespace Business.Concreate
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }
 
-        [ValidationAspect(typeof(LoginValidator))]
-        [CacheAspect]
+        //[ValidationAspect(typeof(LoginValidator))]
+
         public IDataResult<User> Login(UserForLoginDto userForLoginDto)
         {
             var userToCheck = _userService.GetByMail(userForLoginDto.Email);
@@ -54,8 +54,8 @@ namespace Business.Concreate
             return new SuccessDataResult<User>(userToCheck.Data, Messages.SuccessfulLogin);
         }
 
-        [ValidationAspect(typeof(RegisterValidator))]
-        [CacheAspect]
+        //[ValidationAspect(typeof(RegisterValidator))]
+
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
@@ -74,7 +74,6 @@ namespace Business.Concreate
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 
-        [CacheRemoveAspect("IAuthService.Get")]
         public IResult UserExists(string email)
         {
             if (_userService.GetByMail(email).Data != null)
