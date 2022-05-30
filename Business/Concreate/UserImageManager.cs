@@ -29,7 +29,7 @@ namespace Business.Concreate
             _userImageDal = userImageDal;
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(UserImageValidator))]
         [CacheRemoveAspect("IUserImageService.Get")]
         public IResult Add(int userId, List<IFormFile> file)
@@ -55,7 +55,7 @@ namespace Business.Concreate
             return new SuccessResult(Messages.UserImageAdded);
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(UserImageValidator))]
         [CacheRemoveAspect("IUserImageService.Get")]
         public IResult Delete(int imageId)
@@ -82,7 +82,7 @@ namespace Business.Concreate
             return new SuccessDataResult<List<UserImage>>(_userImageDal.GetAll(u => u.ImagePath == imagePath), Messages.ImagesListedbyImagePath);
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(UserImageValidator))]
         [CacheRemoveAspect("IUserImageService.Get")]
         public IResult Update(int imageId, IFormFile file)

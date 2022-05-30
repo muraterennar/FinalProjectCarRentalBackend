@@ -12,6 +12,8 @@ namespace DataAccess.Abstract
     public interface IUserDal:IEntityRepository<User>
     {
         List<OperationClaim> GetClaims(User user);
-        List<User> GetUserDetails(User user);
+        List<User> GetUsers(User user);
+        List<UserDetailsDto> GetUserDetails();
+        List<UserDetailsDto> GetUserDetailsByUserId(int userId);
     }
 }
