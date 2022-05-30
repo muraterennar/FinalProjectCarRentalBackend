@@ -66,6 +66,11 @@ namespace Business.Concreate
             return new SuccessDataResult<List<UserDetailsDto>>(_userDal.GetUserDetails(), Messages.UsersListed);
         }
 
+        public IDataResult<List<UserDetailsDto>> GetUserDetilsByEmail(string email)
+        {
+            return new SuccessDataResult<List<UserDetailsDto>>(_userDal.GetUserDetailsByEmail(email));
+        }
+
         public IDataResult<List<UserDetailsDto>> GetUserDetilsByUserId(int userId)
         {
             return new SuccessDataResult<List<UserDetailsDto>>(_userDal.GetUserDetailsByUserId(userId), Messages.UserListed);

@@ -55,6 +55,12 @@ namespace DataAccess.Concreate.EntityFramework
             }
         }
 
+        public List<UserDetailsDto> GetUserDetailsByEmail(string email)
+        {
+            var result = GetUserDetails().Where(u => u.Email == email).ToList();
+            return result;
+        }
+
         public List<UserDetailsDto> GetUserDetailsByUserId(int userId)
         {
             var result = GetUserDetails().Where(u => u.UserId == userId);

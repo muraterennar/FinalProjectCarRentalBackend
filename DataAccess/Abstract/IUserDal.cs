@@ -15,5 +15,6 @@ namespace DataAccess.Abstract
         List<User> GetUsers(User user);
         List<UserDetailsDto> GetUserDetails();
         List<UserDetailsDto> GetUserDetailsByUserId(int userId);
+        List<UserDetailsDto> GetUserDetailsByEmail(string email);
     }
 }
