@@ -12,9 +12,19 @@ namespace DataAccess.Concreate.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, CarRentalContext>, IRentalDal
     {
+        public List<RentalDetailDto> GetRentalDetailByCarId(int carId)
+        {
+            return GetRentalDetails().Where(x => x.CarId == carId).ToList();
+        }
+
         public List<RentalDetailDto> GetRentalDetailById(int rentalId)
         {
             return GetRentalDetails().Where(x => x.RentalId == rentalId).ToList();
+        }
+
+        public List<RentalDetailDto> GetRentalDetailByUserId(int userId)
+        {
+            return GetRentalDetails().Where(x => x.UserId == userId).ToList();
         }
 
         public List<RentalDetailDto> GetRentalDetails()
@@ -30,11 +40,13 @@ namespace DataAccess.Concreate.EntityFramework
                              {
                                  RentalId = rental.Id,
                                  CarId = car.Id,
+                                 UserId = user.Id,
                                  BrandName = brand.BrandName,
                                  BrandModel = brand.BrandModel,
                                  FirstName = user.FirstName,
                                  LastName = user.LastName,
                                  Email = user.Email,
+                                 PhoneNumber = user.PhoneNumber,
                                  RentDate = rental.RentDate,
                                  ReturnDate = rental.ReturnDate
                              };

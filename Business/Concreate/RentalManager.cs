@@ -55,11 +55,23 @@ namespace Business.Concreate
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id), Messages.RentalListed);
         }
+
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailByCarId(int carId)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailByCarId(carId));
+        }
+
         [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetRentalDetailById(int id)
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailById(id), Messages.RentalListed);
         }
+
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailByUserId(int userId)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailByUserId(userId));
+        }
+
         [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
