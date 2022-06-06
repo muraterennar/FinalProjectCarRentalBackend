@@ -10,7 +10,6 @@ namespace Entities.Concreate
     public class Rental:IEntity
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
         public int CarId { get; set; }
         public int BrandId { get; set; }
         public int CustomerId { get; set; }

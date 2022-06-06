@@ -23,22 +23,9 @@ namespace WebAPI.Controllers
             var result = _customerService.GetAll();
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
-
-            return BadRequest(result);
-        }
-
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
-        {
-            var result = _customerService.GetbyId(id);
-            if (result.Success)
-            {
-                Ok(result);
-            }
-
-            return BadRequest(result);
+            else { return (IActionResult)BadRequest(result); }
         }
 
         [HttpGet("getcustomerdetails")]
@@ -47,19 +34,33 @@ namespace WebAPI.Controllers
             var result = _customerService.GetCustomerDetails();
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
+
+        [HttpGet("getcustomerdetailbyid")]
+        public IActionResult GetCustomerDetailById(int customerId)
+        {
+            var result = _customerService.GetCustomerDetailById(customerId);
+            if (result.Success)
+            {
+                return Ok(result);
             }
 
             return BadRequest(result);
         }
 
-        [HttpGet("getcustomerdetailById")]
-        public IActionResult GetCustomerDetailById(int id)
+        [HttpGet("getcustomerbyemail")]
+        public IActionResult GetCustomerByEmail(string email)
         {
-            var result = _customerService.GetCustomerDetailById(id);
+            var result = _customerService.GetCustomerByEmail(email);
             if (result.Success)
             {
-                Ok(result);
+                return Ok(result);
             }
 
             return BadRequest(result);

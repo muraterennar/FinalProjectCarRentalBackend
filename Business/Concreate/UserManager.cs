@@ -61,16 +61,19 @@ namespace Business.Concreate
             return new SuccessDataResult<List<OperationClaim>>(_userDal.GetClaims(user));
         }
 
+        [CacheAspect]
         public IDataResult<List<UserDetailsDto>> GetUserDetils()
         {
             return new SuccessDataResult<List<UserDetailsDto>>(_userDal.GetUserDetails(), Messages.UsersListed);
         }
 
+        [CacheAspect]
         public IDataResult<List<UserDetailsDto>> GetUserDetilsByEmail(string email)
         {
             return new SuccessDataResult<List<UserDetailsDto>>(_userDal.GetUserDetailsByEmail(email));
         }
 
+        [CacheAspect]
         public IDataResult<List<UserDetailsDto>> GetUserDetilsByUserId(int userId)
         {
             return new SuccessDataResult<List<UserDetailsDto>>(_userDal.GetUserDetailsByUserId(userId), Messages.UserListed);

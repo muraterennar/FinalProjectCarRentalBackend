@@ -28,17 +28,6 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
-        {
-            var result = _restalService.GetbyId(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
 
         [HttpGet("getrentaldetails")]
         public IActionResult GetRentalDetails()
@@ -52,10 +41,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getrentaldetailbyid")]
-        public IActionResult GetRentalDetailById(int id)
+        [HttpGet("getrentaldetailbycustomer")]
+        public IActionResult GetRentalDetailByCustomer(int customerId)
         {
-            var result = _restalService.GetRentalDetailById(id);
+            var result = _restalService.GetRentalDetailByCustomer(customerId);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,10 +53,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getrentaldetailbyuserid")]
-        public IActionResult GetRentalDetailByUserId(int userId)
+        [HttpGet("getrentalbycar")]
+        public IActionResult GetRentalByCar(int carId)
         {
-            var result = _restalService.GetRentalDetailByUserId(userId);
+            var result = _restalService.GetRentalByCar(carId);
             if (result.Success)
             {
                 return Ok(result);
@@ -76,10 +65,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getrentaldetailbycarid")]
-        public IActionResult GetRentalDetailBycarId(int carId)
+        [HttpGet("getrentalbyid")]
+        public IActionResult GetRentalById(int id)
         {
-            var result = _restalService.GetRentalDetailByCarId(carId);
+            var result = _restalService.GetRentalById(id);
             if (result.Success)
             {
                 return Ok(result);

@@ -18,7 +18,7 @@ namespace Business.Concreate
 {
     public class RentalManager : IRentalService
     {
-        IRentalDal _rentalDal;
+        private IRentalDal _rentalDal;
 
         public RentalManager(IRentalDal rentalDal)
         {
@@ -45,31 +45,29 @@ namespace Business.Concreate
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.RentalDeleted);
         }
+
         [CacheAspect]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(), Messages.RentalsListed);
         }
-        [CacheAspect]
-        public IDataResult<Rental> GetbyId(int id)
-        {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id), Messages.RentalListed);
-        }
-
-        public IDataResult<List<RentalDetailDto>> GetRentalDetailByCarId(int carId)
-        {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailByCarId(carId));
-        }
 
         [CacheAspect]
-        public IDataResult<List<RentalDetailDto>> GetRentalDetailById(int id)
+        public IDataResult<List<Rental>> GetRentalByCar(int carId)
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailById(id), Messages.RentalListed);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.CarId == carId), Messages.RentalListed);
         }
 
-        public IDataResult<List<RentalDetailDto>> GetRentalDetailByUserId(int userId)
+        public IDataResult<Rental> GetRentalById(int id)
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetailByUserId(userId));
+            var result = _rentalDal.Get(r => r.Id == id);
+            return new SuccessDataResult<Rental>(result, Messages.RentalListed);
+        }
+
+        [CacheAspect]
+        public IDataResult<List<RentalDetailByCustomerDto>> GetRentalDetailByCustomer(int customerId)
+        {
+            return new SuccessDataResult<List<RentalDetailByCustomerDto>>(_rentalDal.GetRentalDetailByCustomer(r => r.CustomerId == customerId), Messages.RentalListed);
         }
 
         [CacheAspect]

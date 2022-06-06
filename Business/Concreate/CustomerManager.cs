@@ -44,22 +44,28 @@ namespace Business.Concreate
 
             return new SuccessResult(Messages.CustomerDeleted);
         }
-        [CacheAspect]
+
         public IDataResult<List<Customer>> GetAll()
         {
             return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(), Messages.CustomersListed);
+
         }
-        [CacheAspect]
-        public IDataResult<Customer> GetbyId(int id)
+
+        public IDataResult<Customer> GetById(int id)
         {
-            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id), Messages.CustomerListed);
+            return new SuccessDataResult<Customer>(_customerDal.Get(c => c.Id == id));
         }
-        [CacheAspect]
-        public IDataResult<List<CustomerDetailDto>> GetCustomerDetailById(int id)
+
+        public IDataResult<CustomerDetailDto> GetCustomerByEmail(string email)
         {
-            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetailById(id), Messages.CustomerListed);
+            return new SuccessDataResult<CustomerDetailDto>(_customerDal.GetCustomerDetailByEmail(c => c.Email == email), Messages.CustomersListed);
         }
-        [CacheAspect]
+
+        public IDataResult<CustomerDetailDto> GetCustomerDetailById(int customerId)
+        {
+            return new SuccessDataResult<CustomerDetailDto>(_customerDal.GetCustomerDetailById(c => c.Id == customerId), Messages.CustomersListed);
+        }
+
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
         {
             return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails(), Messages.CustomersListed);
