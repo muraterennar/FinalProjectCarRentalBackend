@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Core.Entities.Concreate;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -96,6 +97,30 @@ namespace WebAPI.Controllers
         {
             var result = _userService.GetClaims(user);
 
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpPost("update")]
+        public IActionResult Update(UserProfileEditDto userProfileEdit)
+        {
+            var result = _userService.EditProfile(userProfileEdit, userProfileEdit.Password);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
+
+        [HttpPost("delete")]
+        public IActionResult Delete(User user)
+        {
+            var result = _userService.Delete(user);
             if (result.Success)
             {
                 return Ok(result);

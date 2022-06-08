@@ -43,6 +43,10 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CityManager>().As<ICityService>().SingleInstance();
             builder.RegisterType<EfCityDal>().As<ICityDal>().SingleInstance();
 
+            //Gender
+            builder.RegisterType<GenderManager>().As<IGenderService>().SingleInstance();
+            builder.RegisterType<EfGenderDal>().As<IGenderDal>().SingleInstance();
+
             //CreditCard
             builder.RegisterType<CreditCardPaymentManager>().As<ICreditCardPaymetService>().SingleInstance();
             builder.RegisterType<EfCreditCardPaymnetDal>().As<ICreditCardPaymentDal>().SingleInstance();

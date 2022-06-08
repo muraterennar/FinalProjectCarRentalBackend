@@ -19,5 +19,7 @@ namespace Business.Abstract
         IDataResult<List<OperationClaim>> GetClaims(User user);
         IDataResult<User> GetByMail(string email);
         IResult Add(User user);
+        IDataResult<User> EditProfile(UserProfileEditDto profile, string password);
+        IResult Delete(User user);
     }
 }
