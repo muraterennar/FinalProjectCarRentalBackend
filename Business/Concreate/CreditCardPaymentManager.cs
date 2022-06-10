@@ -30,7 +30,7 @@ namespace Business.Concreate
         [CacheRemoveAspect("ICreditCardPaymentService.Get")]
         public IResult AddPaymnet(CreditCard creditCard)
         {
-            var results = _creditCardPayment.GetAll(c => c.UserId == creditCard.UserId);
+            var results = _creditCardPayment.GetAll(c => c.CustomerId == creditCard.CustomerId);
             foreach (var result in results)
             {
                 _creditCardPayment.Update(result);
@@ -62,9 +62,9 @@ namespace Business.Concreate
         }
 
         [CacheAspect]
-        public IDataResult<CreditCard> GetByUserId(int userId)
+        public IDataResult<CreditCard> GetByCustomerId(int customerId)
         {
-            return new SuccessDataResult<CreditCard>(_creditCardPayment.Get(c => c.UserId == userId), Messages.ListedCreditCardbyUserId);
+            return new SuccessDataResult<CreditCard>(_creditCardPayment.Get(c => c.CustomerId == customerId), Messages.ListedCreditCardbyUserId);
         }
 
         //[SecuredOperation("admin, user")]

@@ -14,5 +14,6 @@ namespace DataAccess.Abstract
     {
         List<RentalDetailDto> GetRentalDetails();
         List<RentalDetailByCustomerDto> GetRentalDetailByCustomer(Expression<Func<Rental, bool>> filter);
+        List<RentalDetailByCustomerDto> GetRentalDetailByCar(Expression<Func<Rental, bool>> filter);
     }
 }

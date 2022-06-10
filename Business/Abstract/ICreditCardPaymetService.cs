@@ -13,7 +13,7 @@ namespace Business.Abstract
     {
         IDataResult<List<CreditCard>> GetAll();
         IDataResult<CreditCard> Get(int id);
-        IDataResult<CreditCard> GetByUserId(int userId);
+        IDataResult<CreditCard> GetByCustomerId(int customerId);
 
         IResult AddPaymnet(CreditCard creditCard);
         IResult NotAddPaymnet(CreditCardPaymentDto creditCardPaymentDto);

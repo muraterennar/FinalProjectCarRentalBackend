@@ -9,7 +9,7 @@ namespace Core.Entities.Concreate
     public class CreditCard : IEntity
     {
         public int Id { get; set; }
-        public int UserId { get; set; }
+        public int CustomerId { get; set; }
         public string NameOfTheCardHolder { get; set; }
         public string CardNumber { get; set; }
         public string Cvv { get; set; }

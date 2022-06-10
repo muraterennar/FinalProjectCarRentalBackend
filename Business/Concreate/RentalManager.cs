@@ -64,6 +64,11 @@ namespace Business.Concreate
             return new SuccessDataResult<Rental>(result, Messages.RentalListed);
         }
 
+        public IDataResult<List<RentalDetailByCustomerDto>> GetRentalDetailByCar(int carId)
+        {
+            return new SuccessDataResult<List<RentalDetailByCustomerDto>>(_rentalDal.GetRentalDetailByCar(u => u.CarId == carId));
+        }
+
         [CacheAspect]
         public IDataResult<List<RentalDetailByCustomerDto>> GetRentalDetailByCustomer(int customerId)
         {

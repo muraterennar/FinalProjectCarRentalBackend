@@ -13,6 +13,31 @@ namespace DataAccess.Concreate.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, CarRentalContext>, IRentalDal
     {
+        public List<RentalDetailByCustomerDto> GetRentalDetailByCar(Expression<Func<Rental, bool>> filter)
+        {
+            using (CarRentalContext context = new CarRentalContext())
+            {
+                var result = from rental in filter is null ? context.Rentals : context.Rentals.Where(filter)
+                             join customer in context.Customers on rental.CustomerId equals customer.Id
+                             join user in context.Users on customer.UserId equals user.Id
+                             join car in context.Cars on rental.CarId equals car.Id
+                             join color in context.Colors on car.ColorId equals color.Id
+                             select new RentalDetailByCustomerDto()
+                             {
+                                 UserId = customer.UserId,
+                                 CarId = car.Id,
+                                 FirstName = user.FirstName,
+                                 LastName = user.LastName,
+                                 RentDate = rental.RentDate,
+                                 ReturnDate = rental.ReturnDate,
+                                 PhoneNumber = user.PhoneNumber,
+                                 Address = user.Address,
+                                 Email = user.Email,
+                             };
+                return result.ToList();
+            }
+        }
+
         public List<RentalDetailByCustomerDto> GetRentalDetailByCustomer(Expression<Func<Rental, bool>> filter)
         {
             using (CarRentalContext context = new CarRentalContext())
@@ -21,17 +46,18 @@ namespace DataAccess.Concreate.EntityFramework
                              join customer in context.Customers on rental.CustomerId equals customer.Id
                              join user in context.Users on customer.UserId equals user.Id
                              join car in context.Cars on rental.CarId equals car.Id
-                             join brand in context.Brands on car.BrandId equals brand.Id
                              join color in context.Colors on car.ColorId equals color.Id
                              select new RentalDetailByCustomerDto()
                              {
-                                 BrandName = brand.BrandName,
-                                 ColorName = color.ColorName,
+                                 UserId = user.Id,
+                                 CarId = car.Id,
                                  FirstName = user.FirstName,
                                  LastName = user.LastName,
                                  RentDate = rental.RentDate,
                                  ReturnDate = rental.ReturnDate,
                                  PhoneNumber = user.PhoneNumber,
+                                 Address = user.Address,
+                                 Email = user.Email,
                              };
                 return result.ToList();
             }
