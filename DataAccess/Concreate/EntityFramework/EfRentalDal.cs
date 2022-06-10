@@ -44,12 +44,12 @@ namespace DataAccess.Concreate.EntityFramework
                 var result = from rental in context.Rentals
                              join customer in context.Customers on rental.CustomerId equals customer.Id
                              join car in context.Cars on rental.CarId equals car.Id
-                             join brand in context.Brands on rental.BrandId equals brand.Id
+                             //join brand in context.Brands on rental.BrandId equals brand.Id
                              join user in context.Users on customer.UserId equals user.Id
                              join color in context.Colors on car.ColorId equals color.Id
                              select new RentalDetailDto()
                              {
-                                 BrandName = brand.BrandName,
+                                 //BrandName = brand.BrandName,
                                  ColorName = color.ColorName,
                                  CompanyName = customer.CompanyName,
                                  DailyPrice = car.DailyPrice,

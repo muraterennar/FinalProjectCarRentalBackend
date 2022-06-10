@@ -23,7 +23,7 @@ namespace DataAccess.Concreate.EntityFramework
                              {
                                  UserId = user.Id,
                                  CompanyName = customer.CompanyName,
-                                 CustomerId = customer.Id,
+                                 Id = customer.Id,
                                  Email = user.Email,
                                  FirstName = user.FirstName,
                                  LastName = user.LastName,
@@ -47,7 +47,7 @@ namespace DataAccess.Concreate.EntityFramework
                                  FirstName = user.FirstName,
                                  LastName = user.LastName,
                                  UserId = user.Id,
-                                 CustomerId = customer.Id,
+                                 Id = customer.Id,
                                  Email = user.Email,
                                  PhoneNumber = user.PhoneNumber,
                                  Status = user.Status,
@@ -69,7 +69,7 @@ namespace DataAccess.Concreate.EntityFramework
                                  CompanyName = customer.CompanyName,
                                  FirstName = user.FirstName,
                                  LastName = user.LastName,
-                                 CustomerId = customer.Id,
+                                 Id = customer.Id,
                                  Email = user.Email,
                                  PhoneNumber = user.PhoneNumber,
                                  Status = user.Status
