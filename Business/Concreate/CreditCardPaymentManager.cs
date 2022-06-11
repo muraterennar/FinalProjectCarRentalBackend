@@ -25,7 +25,7 @@ namespace Business.Concreate
             _creditCardPayment = creditCardPayment;
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(CreditCardPaymentValidator))]
         [CacheRemoveAspect("ICreditCardPaymentService.Get")]
         public IResult AddPaymnet(CreditCard creditCard)
@@ -40,7 +40,7 @@ namespace Business.Concreate
             return new SuccessResult(Messages.AddedCreditCardAndToPay);
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(CreditCardPaymentValidator))]
         [CacheRemoveAspect("ICreditCardPaymentService.Get")]
         public IResult Delete(CreditCard creditCard)
@@ -62,20 +62,20 @@ namespace Business.Concreate
         }
 
         [CacheAspect]
-        public IDataResult<CreditCard> GetByCustomerId(int customerId)
+        public IDataResult<List<CreditCard>> GetByCustomerId(int customerId)
         {
-            return new SuccessDataResult<CreditCard>(_creditCardPayment.Get(c => c.CustomerId == customerId), Messages.ListedCreditCardbyUserId);
+            return new SuccessDataResult<List<CreditCard>>(_creditCardPayment.GetAll(c=>c.CustomerId == customerId), Messages.ListedCreditCardbyUserId);
         }
 
         //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(CreditCardPaymentValidator))]
         [CacheRemoveAspect("ICreditCardPaymentService.Get")]
-        public IResult NotAddPaymnet(CreditCardPaymentDto creditCardPaymentDto)
+        public IResult NotAddPaymnet()
         {
             return new SuccessResult(Messages.AddedCreditCardAndToPay);
         }
 
-        [SecuredOperation("admin, user")]
+        //[SecuredOperation("admin, user")]
         [ValidationAspect(typeof(CreditCardPaymentValidator))]
         [CacheRemoveAspect("ICreditCardPaymentService.Get")]
         public IResult Update(CreditCard creditCard)

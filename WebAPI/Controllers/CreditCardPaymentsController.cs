@@ -65,10 +65,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost("payment")]
-        public IActionResult Payment(CreditCardPaymentDto creditCardPaymentDto)
+        [HttpGet("payment")]
+        public IActionResult Payment()
         {
-            var result = _creditCardPaymentService.NotAddPaymnet(creditCardPaymentDto);
+            var result = _creditCardPaymentService.NotAddPaymnet();
             if (result.Success)
             {
                 return Ok(result);
