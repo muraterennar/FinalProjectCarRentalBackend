@@ -43,6 +43,7 @@ namespace Business.Concreate
 
             return new SuccessResult(Messages.ColorDeleted);
         }
+
         [CacheAspect]
         public IDataResult<List<Color>> GetAll()
         {
