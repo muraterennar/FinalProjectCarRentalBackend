@@ -65,7 +65,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("payment")]
+        [HttpPost("payment")]
         public IActionResult Payment()
         {
             var result = _creditCardPaymentService.NotAddPaymnet();
