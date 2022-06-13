@@ -36,7 +36,7 @@ namespace Business.Concreate
         }
 
         //[SecuredOperation("admin")]
-        [ValidationAspect(typeof(CarValidator))]
+        //[ValidationAspect(typeof(CarValidator))]
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
@@ -45,7 +45,7 @@ namespace Business.Concreate
             return new SuccessResult(Messages.CarDeleted);
         }
 
-        [CacheAspect]
+        //[CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);

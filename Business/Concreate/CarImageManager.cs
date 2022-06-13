@@ -88,6 +88,7 @@ namespace Business.Concreate
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.ImagePath == imagePath), Messages.CarImageGetImagePath);
         }
 
+
         //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         [CacheRemoveAspect("ICarImageService.Get")]
